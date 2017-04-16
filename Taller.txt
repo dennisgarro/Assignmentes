@@ -1,0 +1,15 @@
+1. Create 2 Tablespaces: one with 1 Gb and 2 datafiles, tablespace should be named "vehicles_fleet?"
+and the other one with the name "test_purposes?" with 500 Mb and 1 datafile. (0.5)
+CREATE TABLESPACE VEHICLES_FLEET DATAFILE 'D:\ORACLE\DATA\VEHI_DAT01.DBF' SIZE 500 M ,'D:\ORACLE\DATA\VEHI_DAT02.DBF' SIZE 500 M;
+CREATE TABLESPACE TEST_PURPOSES DATAFILE 'D:\ORACLE\DATA\PURPO_DAT01.DBF' SIZE 500 M;
+
+2. Create an Undo tablespace with 5Mb? of space and 1 datafile (0.5)
+CREATE TABLESPACE UNDOTBS2 DATAFILE 'D:\ORACLE\DATA\UNDOTBS2_DAT01.DBF' SIZE 5 M;
+
+3. Set the undo tablespace to be used in the system (0.5)
+ALTER SYSTEM SET UNDO_TABLESPACE =UNDOTBS2 SCOPE =MEMORY;
+
+4. Create a DBA user and assign it to the tablespace called "vehicles_fleet?", this user has unlimited
+space on the tablespace (0.5)
+CREATE USER ELDI IDENTIFIED BY "VANEGAS01" DEFAULT TABLESPACE VEHICLES_FLEET TEMPORARY TABLESPACE TEMP;
+GRANT UNLIMITED TABLESPACE TO ELDI;
